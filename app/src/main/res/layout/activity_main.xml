@@ -7,36 +7,55 @@
     android:fitsSystemWindows="true"
     tools:context="llc.bigfu.bigfucamp.MainActivity">
 
-    <Button
-        android:layout_width="match_parent"
+    <RelativeLayout
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Add New"
-        android:textSize="15pt"
-        android:id="@+id/addNew"/>
+        android:background="@android:color/white">
 
-    <ListView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="10dp"
-        android:id="@+id/contactList">
-    </ListView>
-
-    <!--
-    <include layout="@layout/add_screen" />
-
-    <android.support.design.widget.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
-
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay" />
+            android:layout_height="75dp"
+            android:id="@+id/logo"
+            android:text="Automantic"
+            android:textSize="25pt"
+            android:textAlignment="center"
+            android:typeface="monospace"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_below="@+id/logo"
+            android:id="@+id/tagline"
+            android:text="The Future of Romance."
+            android:textSize="9pt"
+            android:textAlignment="center"
+            android:typeface="monospace"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"/>
 
-    </android.support.design.widget.AppBarLayout>
-    -->
+        <Button
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginLeft="320dp"
+            android:layout_below="@id/tagline"
+            android:text="+"
+            android:textSize="30pt"
+            android:typeface="sans"
+            android:textStyle="bold"
+            android:textColor="@android:color/black"
+            android:background="?android:attr/selectableItemBackground"
+            android:id="@+id/addNew" />
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/addNew"
+            android:id="@+id/contactList"
+            android:background="@android:color/white">
+        </ListView>
+
+
+    </RelativeLayout>
 
 </android.support.design.widget.CoordinatorLayout>

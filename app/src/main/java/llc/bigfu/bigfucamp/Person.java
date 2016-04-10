@@ -12,15 +12,15 @@ import java.util.Date;
 public class Person {
     public String NAME;
     public String PHONE_NUMBER;
-    public Date START;
-    public Date END;
+    public String START;
+    public String END;
 
     public Person(String phoneNumber, String name) {
         this.NAME = name;
         this.PHONE_NUMBER = phoneNumber;
     }
 
-    public Person(String phoneNumber, String name, Date start, Date end) {
+    public Person(String phoneNumber, String name, String start, String end) {
         this.NAME = name;
         this.PHONE_NUMBER = phoneNumber;
         this.START = start;

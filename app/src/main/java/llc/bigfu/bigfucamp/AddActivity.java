@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.v4.app.ActivityCompat;
 import android.telephony.SmsManager;
+import android.text.format.DateFormat;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -23,17 +24,13 @@ import java.util.Date;
 
 public class AddActivity extends Activity {
     static final int PICK_CONTACT = 1;
-    private Person current;
-
+    static Person current;
     static TextView start, end;
-    static Date start_t,end_t;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.add_screen);
-
-        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.SEND_SMS}, 1);
 
         Button contact = (Button)findViewById(R.id.selectContact);
 
@@ -53,9 +50,13 @@ public class AddActivity extends Activity {
                 // Perform action on click
                 Intent intent = getIntent();
 
-                System.out.println("\n\n\n\n SemiFinal Stage Name: " + current.NAME + " and num: " + current.PHONE_NUMBER);
+                System.out.println("\n\n\n\n SemiFinal Stage Name: " + current.NAME + " and num: " + current.PHONE_NUMBER
+                                    + "\n" + current.START + "-" + current.END);
+
                 intent.putExtra("name", current.NAME);
                 intent.putExtra("num", current.PHONE_NUMBER);
+                intent.putExtra("start", current.START);
+                intent.putExtra("end", current.END);
                 setResult(RESULT_OK,intent);
                 finish();
             }
@@ -112,19 +113,11 @@ public class AddActivity extends Activity {
         if (requestCode == PICK_CONTACT) {
             // Make sure the request was successful
             if (resultCode == RESULT_OK) {
-                // The user picked a contact.
-                // The Intent's data Uri identifies which contact was selected.
                 Uri contactUri = data.getData();
 
-                // We only need the NUMBER column, because there will be only one row in the result
                 String[] num_projection = {ContactsContract.CommonDataKinds.Phone.NUMBER};
                 String[] name_projection = {ContactsContract.CommonDataKinds.Nickname.DISPLAY_NAME};
 
-                // Perform the query on the contact to get the NUMBER column
-                // We don't need a selection or sort order (there's only one result for the given URI)
-                // CAUTION: The query() method should be called from a separate thread to avoid blocking
-                // your app's UI thread. (For simplicity of the sample, this code doesn't do that.)
-                // Consider using CursorLoader to perform the query.
                 Cursor num_cursor = getContentResolver().query(contactUri, num_projection, null, null, null);
                 Cursor name_cursor = getContentResolver().query(contactUri, name_projection, null, null, null);
                 num_cursor.moveToFirst();
@@ -136,18 +129,26 @@ public class AddActivity extends Activity {
                 String number = num_cursor.getString(column);
                 String name = name_cursor.getString(column1);
 
+                current = new Person(number, name);
+
+                Button contact = (Button)findViewById(R.id.selectContact);
+
+                contact.setText("Selected:\n" + name);
+                contact.setTextSize(30);
+
                 System.out.println("\n\n\n\n\n Debug Phone Number: " + number);
                 System.out.println("\n\n\n\n\n Debug Name: " + name);
 
-
-                current = new Person(number,name);
             }
         }
     }
+
     public static class TimePickerFragment extends DialogFragment implements
             TimePickerDialog.OnTimeSetListener {
-
         private int x;
+
+        public TimePickerFragment(){
+        }
 
         public TimePickerFragment(int x) {
             super();
@@ -166,20 +167,23 @@ public class AddActivity extends Activity {
         }
 
         public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-           // setTimeString(hourOfDay, minute, 0);
             if (this.x == 1) {
-                final Calendar c = Calendar.getInstance();
                 end.setText(hourOfDay+":"+minute);
-                end_t = new Date(c.get(Calendar.YEAR), (c.get(Calendar.MONTH)),(c.get(Calendar.DATE)), hourOfDay, minute);
+                System.out.println(hourOfDay + ":" + minute);
+                current.END = hourOfDay + ":" + minute;
+                System.out.println(current.END);
+                //end_t = new Date(c.get(Calendar.YEAR), (c.get(Calendar.MONTH)),(c.get(Calendar.DATE)), hourOfDay, minute);
+                //current.END = (hourOfDay + ":" + minute);
+                //System.out.println(current.END);
 
             } else {
-                final Calendar c = Calendar.getInstance();
-                start_t = new Date(c.get(Calendar.YEAR), (c.get(Calendar.MONTH)),(c.get(Calendar.DATE)), hourOfDay, minute);
                 start.setText(hourOfDay + ":" + minute);
-
+                //start_t = new Date(c.get(Calendar.YEAR), (c.get(Calendar.MONTH)),(c.get(Calendar.DATE)), hourOfDay, minute);
+                current.START = hourOfDay + ":" + minute;
+                System.out.println(current.START);
+                //current.START = (hourOfDay + ":" + minute);
+                //System.out.println(current.START);
             }
-            //timeView.setText(timeString);
-
         }
     }
 

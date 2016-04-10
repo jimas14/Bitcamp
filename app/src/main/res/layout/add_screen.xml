@@ -4,30 +4,57 @@
     android:id="@+id/LinearLayout1"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:background="@android:color/white">
 
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/white">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:id="@+id/logo"
+        android:text="Automantic"
+        android:textSize="25pt"
+        android:textAlignment="center"
+        android:typeface="monospace"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_below="@+id/logo"
+        android:id="@+id/tagline"
+        android:text="The Future of Romance."
+        android:textSize="9pt"
+        android:textAlignment="center"
+        android:typeface="monospace"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"/>
+    </RelativeLayout>
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="127dp"
+        android:layout_marginTop="-10dp"
         android:id="@+id/selectContact"
         android:text="Select Contact"
-        android:textSize="20pt">
+        android:textSize="18pt"
+        android:textColor="@android:color/black"
+        android:background="?android:attr/selectableItemBackground"
+        android:textAlignment="center"
+        android:typeface="monospace"
+        android:textStyle="bold">
     </Button>
+
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="127dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="-"
-            android:id="@+id/textView"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"
-            android:textSize="50sp" />
+        android:layout_height="127dp"
+        android:background="@android:color/white">
 
         <TextView
             android:layout_width="wrap_content"
@@ -38,7 +65,25 @@
             android:layout_alignTop="@+id/textView"
             android:layout_alignParentStart="true"
             android:layout_marginStart="35dp"
-            android:textSize="50sp" />
+            android:textSize="20pt"
+            android:textColor="@android:color/black"
+            android:textAlignment="center"
+            android:typeface="monospace"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:text="-"
+            android:id="@+id/textView"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:textSize="20pt"
+            android:textColor="@android:color/black"
+            android:textAlignment="center"
+            android:typeface="monospace"
+            android:textStyle="bold"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -49,22 +94,47 @@
             android:layout_alignTop="@+id/textView"
             android:layout_toEndOf="@+id/textView"
             android:layout_marginStart="35dp"
-            android:textSize="50sp" />
+            android:textSize="20pt"
+            android:textColor="@android:color/black"
+            android:textAlignment="center"
+            android:typeface="monospace"
+            android:textStyle="bold"/>
     </RelativeLayout>
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="127dp"
-        android:text="OK"
-        android:textSize="20pt"
-        android:id="@+id/okay"/>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp">
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="127dp"
-        android:text="Text Now"
-        android:textSize="20pt"
-        android:id="@+id/instant"/>
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_marginLeft="20dp"
+            android:text="Set"
+            android:textSize="20pt"
+            android:id="@+id/okay"
+            android:background="?android:attr/selectableItemBackground"
+            android:textColor="@android:color/black"
+            android:textAlignment="center"
+            android:typeface="monospace"
+            android:textStyle="bold"/>
+
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_toRightOf="@+id/okay"
+            android:layout_marginLeft="30dp"
+            android:text="Send Now"
+            android:textSize="17pt"
+            android:id="@+id/instant"
+            android:background="?android:attr/selectableItemBackground"
+            android:textColor="@android:color/black"
+            android:textAlignment="center"
+            android:typeface="monospace"
+            android:textStyle="bold"/>
+
+
+    </RelativeLayout>
     <!--
     <LinearLayout
         android:id="@+id/Linear2"

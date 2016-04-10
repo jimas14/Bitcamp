@@ -1,8 +1,10 @@
 package llc.bigfu.bigfucamp;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,6 +23,8 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.SEND_SMS}, 1);
+
         Button addNew = (Button)findViewById(R.id.addNew);
         ListView list = (ListView)findViewById(R.id.contactList);
 
@@ -29,6 +33,7 @@ public class MainActivity extends Activity {
         arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, ppl);
         arrayAdapter.notifyDataSetChanged();
         list.setAdapter(arrayAdapter);
+
 
         addNew.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -49,10 +54,12 @@ public class MainActivity extends Activity {
             if (resultCode == RESULT_OK) {
                 String name = data.getStringExtra("name");
                 String num = data.getStringExtra("num");
+                String start = data.getStringExtra("start");
+                String end = data.getStringExtra("end");
 
-                System.out.println("\n\n\n\n Final Stage Name: " + name + " and num: " + num);
+                System.out.println("\n\n\n\n Final Stage Name: " + name + " and num: " + num + "\n" + start + "-" + end);
 
-                ppl.add(name + "\n" + num);
+                ppl.add(name + "\n" + num + "\n" + start + "-" + end);
 
                 arrayAdapter.notifyDataSetChanged();
             }

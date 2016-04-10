@@ -48,13 +48,6 @@ public class RandomText {
 	}
 	
 	public static String getRandomText(){
-		/*
-		String[] str = getPart("./texts/part1.txt");
-		String[] str1 = getPart("./texts/part2.txt");
-		String[] connect1 = {"! ",", ",". ","\n"};
-		String[] str2 = getPart("./texts/part3.txt");
-		*/
-
 		String[] str = {"Good morning",
 						"Hello",
 						"Hey",
@@ -69,8 +62,7 @@ public class RandomText {
 						"Namaste",
 						"Greetings",
 						"Sup",
-						"Whats up",
-						"God has blessed this world with another day of your smile"};
+						"Whats up"};
 		String[] str1 = {"honey",
 						"sweet",
 						"sweetie",
@@ -101,14 +93,15 @@ public class RandomText {
 		String[] str2 = {"I love you.",
 						"Hope you have a good day!",
 						"Guess who's my favorite person?",
-						"Your the most amazing thing that has happened to me.",
+						"You're the most amazing thing that has happened to me.",
 						"Your eyes are from heaven.",
 						"Every day this world benefits from your love.",
 						"Your heart is a force for good.",
-						"Your amazing mind and body are the true definition of beauty.",
+						"Your mind and body are the true definition of beauty.",
 						"I like you.",
 						"The sunshine illuminates your beautiful soul.",
-						"Where have you been all my life?"};
+						"Where have you been all my life?",
+						"God has blessed this world with another day of your smile"};
 
 		Random randomGenerator = new Random();
 		randomGenerator.setSeed(System.currentTimeMillis()*randomGenerator.nextInt(5746));

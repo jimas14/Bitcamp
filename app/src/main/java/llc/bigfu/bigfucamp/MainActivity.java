@@ -1,41 +1,62 @@
 package llc.bigfu.bigfucamp;
 
-import android.app.ListActivity;
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.TextView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
+import android.widget.ListView;
+import java.util.ArrayList;
 
-public class MainActivity extends ListActivity {
-    public contactList mAdapter;
+public class MainActivity extends Activity {
+    private static final int ADD_NEW = 2;
+    private ArrayList<String> ppl;
+    private ArrayAdapter<String> arrayAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        TextView footerView = (TextView)getLayoutInflater().inflate(R.layout.footer, null);
+        setContentView(R.layout.activity_main);
 
-        if (null == footerView) {
-            return;
-        }
+        Button addNew = (Button)findViewById(R.id.addNew);
+        ListView list = (ListView)findViewById(R.id.contactList);
 
-        getListView().setFooterDividersEnabled(true);
+        ppl = new ArrayList<>();
 
-        this.getListView().addFooterView(footerView);
+        arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, ppl);
+        arrayAdapter.notifyDataSetChanged();
+        list.setAdapter(arrayAdapter);
 
-        footerView.setOnClickListener(new View.OnClickListener() {
+        addNew.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                //TODO - Implement OnClick().
-                Intent i = new Intent(MainActivity.this, EnterActivity.class);
-                startActivityForResult(i, 100);
-
+                Intent intent = new Intent(MainActivity.this, AddActivity.class);
+                startActivityForResult(intent, ADD_NEW);
             }
         });
 
-        this.getListView().setAdapter(mAdapter);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // Check which request we're responding to
+        System.out.println("\n\n\n\n\n RequestCode = " + requestCode);
+        if (requestCode == ADD_NEW) {
+            // Make sure the request was successful
+            if (resultCode == RESULT_OK) {
+                String name = data.getStringExtra("name");
+                String num = data.getStringExtra("num");
+
+                System.out.println("\n\n\n\n Final Stage Name: " + name + " and num: " + num);
+
+                ppl.add(name + "\n" + num);
+
+                arrayAdapter.notifyDataSetChanged();
+            }
+        }
     }
 
     @Override

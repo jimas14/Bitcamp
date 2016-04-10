@@ -1,93 +1,42 @@
-<LinearLayout
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/LinearLayout1"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-    <!--
-    <LinearLayout
-        android:id="@+id/Linear2"
-        android:layout_width="match_parent"
-        android:layout_height="64dp"
-        android:orientation="horizontal">
-        <Button
-            android:id="@+id/button4"
-            android:layout_width="90dp"
-            android:layout_height="wrap_content"
-            android:text="start"
-            android:textSize="15sp" />
-        <Button
-            android:id="@+id/button0"
-            android:layout_width="90dp"
-            android:layout_height="wrap_content"
-            android:text="end"
-            android:textSize="15sp" />
-        <Button
-            android:id="@+id/button5"
-            android:layout_width="90dp"
-            android:layout_height="wrap_content"
-            android:text="cancel"
-            android:textSize="15sp" />
+    android:fitsSystemWindows="true"
+    tools:context="llc.bigfu.bigfucamp.MainActivity">
 
-        <Button
-            android:id="@+id/button6"
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add New"
+        android:textSize="15pt"
+        android:id="@+id/addNew"/>
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="10dp"
+        android:id="@+id/contactList">
+    </ListView>
+
+    <!--
+    <include layout="@layout/add_screen" />
+
+    <android.support.design.widget.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/AppTheme.AppBarOverlay">
+
+        <android.support.v7.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="33dp"
-            android:text="add"
-            android:textSize="13sp" />
-    </LinearLayout>
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+    </android.support.design.widget.AppBarLayout>
     -->
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="127dp"
-        android:id="@+id/selectContact"
-        android:text="Select Contact"
-        android:textSize="20pt">
-    </Button>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="127dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="-"
-            android:id="@+id/textView"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"
-            android:textSize="50sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="12:00"
-            android:id="@+id/start_time"
-            android:layout_alignTop="@+id/textView"
-            android:layout_alignParentStart="true"
-            android:layout_marginStart="35dp"
-            android:textSize="50sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="2:00"
-            android:id="@+id/end_time"
-            android:layout_alignTop="@+id/textView"
-            android:layout_toEndOf="@+id/textView"
-            android:layout_marginStart="35dp"
-            android:textSize="50sp" />
-    </RelativeLayout>
-
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="127dp"
-        android:text="OK"
-        android:textSize="20pt"
-        android:id="@+id/okay"/>
-
-</LinearLayout>
+</android.support.design.widget.CoordinatorLayout>

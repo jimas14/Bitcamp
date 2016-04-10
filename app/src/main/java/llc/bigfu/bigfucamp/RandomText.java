@@ -48,10 +48,67 @@ public class RandomText {
 	}
 	
 	public static String getRandomText(){
-		String[] str = getPart("./com/bigfu/bitcamp/texts/part1.txt");
-		String[] str1 = getPart("./com/bigfu/bitcamp/texts/part2.txt");
+		/*
+		String[] str = getPart("./texts/part1.txt");
+		String[] str1 = getPart("./texts/part2.txt");
 		String[] connect1 = {"! ",", ",". ","\n"};
-		String[] str2 = getPart("./com/bigfu/bitcamp/texts/part3.txt");
+		String[] str2 = getPart("./texts/part3.txt");
+		*/
+
+		String[] str = {"Good morning",
+						"Hello",
+						"Hey",
+						"Heyy",
+						"Hay",
+						"Morning",
+						"Mornin'",
+						"Bonjour",
+						"Buenos Dias",
+						"Konnichiwa",
+						"Hi there",
+						"Namaste",
+						"Greetings",
+						"Sup",
+						"Whats up",
+						"God has blessed this world with another day of your smile"};
+		String[] str1 = {"honey",
+						"sweet",
+						"sweetie",
+						"sweetcheeks",
+						"beautiful",
+						"perfect",
+						"angel",
+						"honeybun",
+						"adorable",
+						"baby cakes",
+						"baby girl",
+						"cuddlebug",
+						"honey bunny",
+						"cutie patootie",
+						"gorgeous",
+						"hotness",
+						"lover",
+						"pancake",
+						"princess",
+						"pudding",
+						"soul mate",
+						"sugar",
+						"sunshine",
+						"sweetheart",
+						"honey muffins",
+						"snuggle muffins"};
+		String[] connect1 = {"! ",", ",". ","\n"};
+		String[] str2 = {"I love you.",
+						"Hope you have a good day!",
+						"Guess who's my favorite person?",
+						"Your the most amazing thing that has happened to me.",
+						"Your eyes are from heaven.",
+						"Every day this world benefits from your love.",
+						"Your heart is a force for good.",
+						"Your amazing mind and body are the true definition of beauty.",
+						"I like you.",
+						"The sunshine illuminates your beautiful soul.",
+						"Where have you been all my life?"};
 
 		Random randomGenerator = new Random();
 		randomGenerator.setSeed(System.currentTimeMillis()*randomGenerator.nextInt(5746));

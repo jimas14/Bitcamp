@@ -73,10 +73,11 @@ public class EnterActivity extends Activity {
                 int column = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
                 //int column1 = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.);
                 String number = cursor.getString(column);
+                String name = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Identity._ID));
                 //String name = cursor.getString(column1);
 
                 System.out.println("\n\n\n\n\n Debug Phone Number: " + number);
-                //System.out.println("\n\n\n\n\n Debug Name: " + name);
+                System.out.println("\n\n\n\n\n Debug Name: " + name);
 
                 //current.packageIntent(data,phone,name,start,end);
 

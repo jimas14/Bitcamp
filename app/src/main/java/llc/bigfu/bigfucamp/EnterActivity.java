@@ -1,22 +1,28 @@
 package llc.bigfu.bigfucamp;
 
 import android.app.Activity;
+import android.app.Dialog;
+import android.app.DialogFragment;
+import android.app.TimePickerDialog;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
-import java.util.Calendar;
-import android.app.Dialog;
-import android.app.DialogFragment;
-import android.app.TimePickerDialog;
 import android.view.View;
-import android.widget.TimePicker;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.TimePicker;
+
+import java.util.Calendar;
+import java.util.Date;
 
 public class EnterActivity extends Activity {
     static final int PICK_CONTACT = 1;
     private Person current;
+
+    static TextView start, end;
+    static Date start_t,end_t;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +47,24 @@ public class EnterActivity extends Activity {
                 // Perform action on click
                 Intent intent = new Intent();
                 startActivityForResult(intent, PICK_CONTACT);
+            }
+        });
+
+        end = (TextView)findViewById(R.id.end_time);
+        start = (TextView)findViewById(R.id.start_time);
+
+        start.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Perform action on click
+                showTimePickerDialog(0);
+
+            }
+        });
+
+        end.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                // Perform action on click
+                showTimePickerDialog(1);
             }
         });
 
@@ -109,9 +133,15 @@ public class EnterActivity extends Activity {
             }
         }
     }
-
     public static class TimePickerFragment extends DialogFragment implements
             TimePickerDialog.OnTimeSetListener {
+
+        private int x;
+        public TimePickerFragment(int x) {
+            super();
+            this.x = x;
+
+        }
         @Override
         public Dialog onCreateDialog(Bundle savedInstanceState) {
 
@@ -126,13 +156,24 @@ public class EnterActivity extends Activity {
 
         public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
            // setTimeString(hourOfDay, minute, 0);
+            if (this.x == 1) {
+                final Calendar c = Calendar.getInstance();
+                end.setText(hourOfDay+":"+minute);
+                end_t = new Date(c.get(Calendar.YEAR), (c.get(Calendar.MONTH)),(c.get(Calendar.DATE)), hourOfDay, minute);
 
+            } else {
+                final Calendar c = Calendar.getInstance();
+                start_t = new Date(c.get(Calendar.YEAR), (c.get(Calendar.MONTH)),(c.get(Calendar.DATE)), hourOfDay, minute);
+                start.setText(hourOfDay + ":" + minute);
+
+            }
             //timeView.setText(timeString);
+
         }
     }
 
-    private void showTimePickerDialog() {
-        DialogFragment newFragment = new TimePickerFragment();
+    private void showTimePickerDialog(int x) {
+        DialogFragment newFragment = new TimePickerFragment(x);
         newFragment.show(getFragmentManager(), "timePicker");
     }
 }

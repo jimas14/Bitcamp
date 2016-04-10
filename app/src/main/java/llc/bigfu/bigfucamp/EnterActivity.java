@@ -5,6 +5,7 @@ import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.ContactsContract;
@@ -72,16 +73,38 @@ public class EnterActivity extends Activity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         // Check which request we're responding to
+        System.out.println("\n\n\n\n\n RequestCode = " + requestCode);
         if (requestCode == PICK_CONTACT) {
             // Make sure the request was successful
             if (resultCode == RESULT_OK) {
                 // The user picked a contact.
                 // The Intent's data Uri identifies which contact was selected.
-                Uri contactData = data.getData();
+                Uri contactUri = data.getData();
 
-                
+                // We only need the NUMBER column, because there will be only one row in the result
+                String[] projection = {ContactsContract.CommonDataKinds.Phone.NUMBER};
+
+                // Perform the query on the contact to get the NUMBER column
+                // We don't need a selection or sort order (there's only one result for the given URI)
+                // CAUTION: The query() method should be called from a separate thread to avoid blocking
+                // your app's UI thread. (For simplicity of the sample, this code doesn't do that.)
+                // Consider using CursorLoader to perform the query.
+                Cursor cursor = getContentResolver()
+                        .query(contactUri, projection, null, null, null);
+                cursor.moveToFirst();
+
+                // Retrieve the phone number from the NUMBER column
+                int column = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER);
+                //int column1 = cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.);
+                String number = cursor.getString(column);
+                //String name = cursor.getString(column1);
+
+                System.out.println("\n\n\n\n\n Debug Phone Number: " + number);
+                //System.out.println("\n\n\n\n\n Debug Name: " + name);
 
                 //current.packageIntent(data,phone,name,start,end);
+
+                current.packageIntent(data,number,null);
 
 
                 // Do something with the contact here (bigger example below)

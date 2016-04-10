@@ -38,11 +38,22 @@ public class Person {
         this.end = end;
     }
 
-    public static void packageIntent(Intent intent, String phoneNumber, String n, Long start, Long end) {
+    public Intent packageIntent(Intent intent, String phoneNumber, String n) {
         intent.putExtra(Person.NAME, n);
         intent.putExtra(Person.PHONE_NUMBER, phoneNumber);
         intent.putExtra(Person.START, start);
         intent.putExtra(Person.END, end);
+
+        return intent;
+    }
+
+    public Intent packageIntent(Intent intent, String phoneNumber, String n, Long start, Long end) {
+        intent.putExtra(Person.NAME, n);
+        intent.putExtra(Person.PHONE_NUMBER, phoneNumber);
+        intent.putExtra(Person.START, start);
+        intent.putExtra(Person.END, end);
+
+        return intent;
     }
 
 
